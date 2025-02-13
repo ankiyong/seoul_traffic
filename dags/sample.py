@@ -10,7 +10,7 @@ from datetime import datetime
 
 # from common.get_data import api_check,get_data
 import requests,json
-
+station_id = "ST-10"
 def api_check(station_id):
     url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
