@@ -53,12 +53,14 @@ with DAG(
     t1 = PythonOperator(
         task_id='health_check',
         python_callable=api_check,
+        op_args=[station_id]
     )
 
     t2 = PythonOperator(
         task_id='get_data',
         depends_on_past=True,
         python_callable=get_data,
+        op_args=[station_id]
     )
     
 
