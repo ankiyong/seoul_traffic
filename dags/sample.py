@@ -9,6 +9,7 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime 
 def test():
     print(datetime.now())
+    
 
     
 with DAG(
