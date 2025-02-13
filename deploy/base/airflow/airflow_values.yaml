@@ -356,7 +356,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  connection: cmVkaXM6Ly86RDQ0d2VzNVlMTUBhaXJmbG93LXJlZGlzOjYzNzkvMA==
+  connection: cmVkaXM6Ly86azhlSncxa0JZbUBhaXJmbG93LXJlZGlzOjYzNzkvMA==
 kind: Secret
 metadata:
   annotations:
@@ -374,7 +374,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  fernet-key: VmxKUFVGVmpVMEozVjNVeFIwbExhek15WjNabVRHdFNiVVZhY20wMlZFND0=
+  fernet-key: VFRKTGVtRlRiREUzVVZWdlFXaDNPVkZQU21oSVFVVndTSHBLYTJOM09Hdz0=
 kind: Secret
 metadata:
   annotations:
@@ -404,7 +404,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  password: RDQ0d2VzNVlMTQ==
+  password: azhlSncxa0JZbQ==
 kind: Secret
 metadata:
   annotations:
@@ -422,7 +422,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  webserver-secret-key: UkVOa1JXbFBjSEJIZFhCV09UbG5UVVJMTXpsVFFraFpXRzFWVDNKT1Jtbz0=
+  webserver-secret-key: TWsxSVltVm5VbVJxYjNZMFN6TmhkekZZT0dwaVEyeEhkVWt6YzBNNFJuVT0=
 kind: Secret
 metadata:
   labels:
@@ -1004,7 +1004,7 @@ spec:
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
         checksum/pgbouncer-config-secret: 1dae2adc757473469686d37449d076b0c82404f61413b58ae68b3c5e99527688
         checksum/webserver-config: 2f3fdfd294a37094d2abee43b2b09888a5c195ee03414996bf99a4681658af94
-        checksum/webserver-secret-key: 61830ff37dd339c37a9502e4e70cfe55909e25a5047516473d930c6da84146e6
+        checksum/webserver-secret-key: a6b2ae95fe7e6568c1f0768a44135f527cd79f840202f69f311f229601854dcd
       labels:
         component: webserver
         release: airflow
