@@ -58,7 +58,7 @@ with DAG(
 
     t2 = PythonOperator(
         task_id='get_data',
-        depends_on_past=True,
+        depends_on_past=False,
         python_callable=get_data,
         op_args=[station_id]
     )
