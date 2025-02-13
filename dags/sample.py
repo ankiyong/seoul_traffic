@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 from textwrap import dedent
+from concurrent.futures import TimeoutError
+from google.cloud import pubsub_v1
 
 from airflow import DAG
 
@@ -27,7 +29,7 @@ def get_data(station_id):
     url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
     data = response.json()
-    print(data["rentBikeStatus"]["list_total_count"])
+    data["rentBikeStatus"]["list_total_count"].xcom_pull(task_ids='t1')
 
     
 with DAG(
