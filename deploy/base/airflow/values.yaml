@@ -1,4 +1,9 @@
 ---
+images:
+  pod_template:
+    repository: localhost:5000/airflow_python
+    tag: latest
+    pullPolicy: IfNotPresent
 executor: "KubernetesExecutor"
 dags:
   gitSync:
@@ -16,4 +21,3 @@ dags:
     sshKeySecret: airflow-git-ssh-secret
     containerName: git-sync
     uid: 65533
-

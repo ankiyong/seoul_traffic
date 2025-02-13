@@ -271,7 +271,7 @@ data:
     name: AIRFLOW__WEBSERVER__SECRET_KEY\n          valueFrom:\n            secretKeyRef:\n
     \             name: airflow-webserver-secret-key\n              key: webserver-secret-key
     \     \n        # Dynamically created environment variables\n        # Dynamically
-    created secret envs\n        \n        # Extra env      \n      image: apache/airflow:2.9.3\n
+    created secret envs\n        \n        # Extra env      \n      image: localhost:5000/airflow_python:latest\n
     \     imagePullPolicy: IfNotPresent\n      securityContext: \n        allowPrivilegeEscalation:
     false\n        capabilities:\n          drop:\n            - ALL\n      name:
     base\n      resources:\n        {}\n      volumeMounts:\n        - mountPath:
@@ -356,7 +356,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  connection: cmVkaXM6Ly86azhlSncxa0JZbUBhaXJmbG93LXJlZGlzOjYzNzkvMA==
+  connection: cmVkaXM6Ly86SDBBcFM3a1BUbUBhaXJmbG93LXJlZGlzOjYzNzkvMA==
 kind: Secret
 metadata:
   annotations:
@@ -374,7 +374,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  fernet-key: VFRKTGVtRlRiREUzVVZWdlFXaDNPVkZQU21oSVFVVndTSHBLYTJOM09Hdz0=
+  fernet-key: YTA5T1ZXZHZaWGg2UVVzM2F6UnBhM1ZSVEV4dGRtVndNRlI2VjB4d1ZXND0=
 kind: Secret
 metadata:
   annotations:
@@ -404,7 +404,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  password: azhlSncxa0JZbQ==
+  password: SDBBcFM3a1BUbQ==
 kind: Secret
 metadata:
   annotations:
@@ -422,7 +422,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  webserver-secret-key: TWsxSVltVm5VbVJxYjNZMFN6TmhkekZZT0dwaVEyeEhkVWt6YzBNNFJuVT0=
+  webserver-secret-key: T1ROVGJUazRNV0YwVTFwaFdGTjZNRm96ZGtWVVFtUkhZVVp3YUc1RFYxYz0=
 kind: Secret
 metadata:
   labels:
@@ -578,7 +578,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: f05c7c619f223d08655339e2e12183321d1b1c0b72207098145e32800df80520
+        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
@@ -998,13 +998,13 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: f05c7c619f223d08655339e2e12183321d1b1c0b72207098145e32800df80520
+        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
         checksum/pgbouncer-config-secret: 1dae2adc757473469686d37449d076b0c82404f61413b58ae68b3c5e99527688
         checksum/webserver-config: 2f3fdfd294a37094d2abee43b2b09888a5c195ee03414996bf99a4681658af94
-        checksum/webserver-secret-key: a6b2ae95fe7e6568c1f0768a44135f527cd79f840202f69f311f229601854dcd
+        checksum/webserver-secret-key: 4b01f1b2b328f77abd00894f0618fd2c64e31116169424a1178c1954f7b47489
       labels:
         component: webserver
         release: airflow
@@ -1342,7 +1342,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: f05c7c619f223d08655339e2e12183321d1b1c0b72207098145e32800df80520
+        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
