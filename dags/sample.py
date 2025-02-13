@@ -8,8 +8,26 @@ from airflow.operators.python_operator import PythonOperator
 
 from datetime import datetime
 
-from common.get_data import api
+# from common.get_data import api_check,get_data
+import requests,json
 
+def api_check(station_id):
+    url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        print("Connect Success")
+        print(f"Status Code : {response.status_code}")
+        return True
+    print("Connect Fail")
+    print(f"Status Code : {response.status_code}")
+    return False
+
+def get_data(station_id):
+    url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
+    response = requests.get(url)
+    data = response.json()
+    print(data["rentBikeStatus"]["list_total_count"])
 
     
 with DAG(
@@ -34,13 +52,13 @@ with DAG(
     # t1, t2 and t3 are examples of tasks created by instantiating operators
     t1 = PythonOperator(
         task_id='health_check',
-        python_callable=api.api_check,
+        python_callable=api_check,
     )
 
     t2 = PythonOperator(
         task_id='get_data',
         depends_on_past=True,
-        python_callable=api.get_data,
+        python_callable=get_data,
     )
     
 
