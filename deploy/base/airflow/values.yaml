@@ -1,4 +1,13 @@
 ---
+airflow:
+  extraVolumeMounts:
+    - name: airflow-log-pvc
+      mountPath: /airflow-logs
+
+  extraVolumes:
+    - name: airflow-log-pvc
+      persistentVolumeClaim:
+        claimName: airflow-log-pvc
 images:
   pod_template:
     repository: localhost:5000/airflow_python
