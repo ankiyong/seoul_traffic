@@ -11,9 +11,8 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.models.variable import Variable
 
 station_id = "ST-10"
-api_key = Variable.get("key")
-# address = Variable.get("URL")
-def api_check(station_id):
+api_key = Variable.get("API_KEY")
+def api_check(station_id,api_key):
     url = f"http://openapi.seoul.go.kr:8088/{api_key}/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
 
@@ -25,8 +24,8 @@ def api_check(station_id):
     print(f"Status Code : {response.status_code}")
     return False
 
-def get_data(station_id):
-    url = f"http://openapi.seoul.go.kr:8088/{api_key}/json/bikeList/1/5/{station_id}" 
+def get_data(station_id,api_key):
+    url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
     data = response.json()
     return data["rentBikeStatus"]
@@ -53,14 +52,14 @@ with DAG(
     t1 = PythonOperator(
         task_id='health_check',
         python_callable=api_check,
-        op_args=[station_id]
+        op_args=[station_id,api_key]
     )
 
     t2 = PythonOperator(
         task_id='get_data',
         depends_on_past=False,
         python_callable=get_data,
-        op_args=[station_id]
+        op_args=[station_id,api_key]
     )
     ping_task = BashOperator(
         task_id="ping_google",
