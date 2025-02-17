@@ -1,0 +1,4 @@
+creation_rules:
+  - path_regex: "^*.secret.(json|yaml)$"
+    age: >-
+      age1zljxclz3lmf5pdqkulkcrv376aj584hhcfx4vxt6zs5vwzs42f3slfvr6c
