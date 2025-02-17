@@ -2,15 +2,19 @@ from datetime import datetime, timedelta
 from textwrap import dedent
 from concurrent.futures import TimeoutError
 from google.cloud import pubsub_v1
-from airflow import DAG
-from airflow.operators.bash import BashOperator
-from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import requests,json
 
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.models.variable import Variable
+
 station_id = "ST-10"
+api_key = Variable.get("API_KEY")
+address = Variable.get("URL")
 def api_check(station_id):
-    url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
+    url = f"{address}/{api_key}/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -22,7 +26,7 @@ def api_check(station_id):
     return False
 
 def get_data(station_id):
-    url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
+    url = f"{address}/{api_key}/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
     data = response.json()
     return data["rentBikeStatus"]
