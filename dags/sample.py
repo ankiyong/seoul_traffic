@@ -12,9 +12,9 @@ from airflow.models.variable import Variable
 
 station_id = "ST-10"
 api_key = Variable.get("API_KEY")
-address = Variable.get("URL")
+# address = Variable.get("URL")
 def api_check(station_id):
-    url = f"{address}/{api_key}/json/bikeList/1/5/{station_id}" 
+    url = f"http://openapi.seoul.go.kr:8088/{api_key}/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -26,7 +26,7 @@ def api_check(station_id):
     return False
 
 def get_data(station_id):
-    url = f"{address}/{api_key}/json/bikeList/1/5/{station_id}" 
+    url = f"http://openapi.seoul.go.kr:8088/{api_key}/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
     data = response.json()
     return data["rentBikeStatus"]
