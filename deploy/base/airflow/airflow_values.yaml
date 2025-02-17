@@ -284,9 +284,9 @@ data:
     0\n  nodeSelector:\n    {}\n  affinity:\n    {}\n  terminationGracePeriodSeconds:
     600\n  tolerations:\n    []\n  topologySpreadConstraints:\n    []\n  serviceAccountName:
     airflow-worker\n  volumes:\n  - name: dags\n    emptyDir:\n      {}\n  - emptyDir:\n
-    \     {}\n    name: logs\n  \n  - name: git-sync-ssh-key\n    secret:\n      secretName:
-    airflow-git-ssh-secret\n      defaultMode: 288\n  - configMap:\n      name: airflow-config\n
-    \   name: config"
+    \     medium: Memory\n      sizeLimit: 10Gi\n    name: logs\n  \n  - name: git-sync-ssh-key\n
+    \   secret:\n      secretName: airflow-git-ssh-secret\n      defaultMode: 288\n
+    \ - configMap:\n      name: airflow-config\n    name: config"
 kind: ConfigMap
 metadata:
   labels:
@@ -356,7 +356,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  connection: cmVkaXM6Ly86SDBBcFM3a1BUbUBhaXJmbG93LXJlZGlzOjYzNzkvMA==
+  connection: cmVkaXM6Ly86Smx2ZnZCajhwaEBhaXJmbG93LXJlZGlzOjYzNzkvMA==
 kind: Secret
 metadata:
   annotations:
@@ -374,7 +374,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  fernet-key: YTA5T1ZXZHZaWGg2UVVzM2F6UnBhM1ZSVEV4dGRtVndNRlI2VjB4d1ZXND0=
+  fernet-key: YUhWNWNsTm1la0ZJZUVaR1EzbDBaek5IV0dkTU5tb3pXSGcwU25Wa1YwYz0=
 kind: Secret
 metadata:
   annotations:
@@ -404,7 +404,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  password: SDBBcFM3a1BUbQ==
+  password: Smx2ZnZCajhwaA==
 kind: Secret
 metadata:
   annotations:
@@ -422,7 +422,7 @@ type: Opaque
 ---
 apiVersion: v1
 data:
-  webserver-secret-key: T1ROVGJUazRNV0YwVTFwaFdGTjZNRm96ZGtWVVFtUkhZVVp3YUc1RFYxYz0=
+  webserver-secret-key: VjFjMVJrTkhNakZwVkRkdGMyNWxibEF3VWpoV1RGSnRXVVpMZEhjME1XMD0=
 kind: Secret
 metadata:
   labels:
@@ -578,7 +578,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
+        checksum/airflow-config: ce3287d6e8204ec38980516e991ab7ca58aba0bb9556c07fcce4c7c8f6865e95
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
@@ -897,7 +897,9 @@ spec:
         secret:
           defaultMode: 288
           secretName: airflow-git-ssh-secret
-      - emptyDir: {}
+      - emptyDir:
+          medium: Memory
+          sizeLimit: 10Gi
         name: logs
 ---
 apiVersion: apps/v1
@@ -998,13 +1000,13 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
+        checksum/airflow-config: ce3287d6e8204ec38980516e991ab7ca58aba0bb9556c07fcce4c7c8f6865e95
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
         checksum/pgbouncer-config-secret: 1dae2adc757473469686d37449d076b0c82404f61413b58ae68b3c5e99527688
         checksum/webserver-config: 2f3fdfd294a37094d2abee43b2b09888a5c195ee03414996bf99a4681658af94
-        checksum/webserver-secret-key: 4b01f1b2b328f77abd00894f0618fd2c64e31116169424a1178c1954f7b47489
+        checksum/webserver-secret-key: 5d69d9bd3b24318eaddeade569bfb2a610bb43820971168c84f6beb2bf2263da
       labels:
         component: webserver
         release: airflow
@@ -1342,7 +1344,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/airflow-config: dc80aa0b8f9153165322df3c9b27cc36d75ad7f07eb5c06abe4f2f22f2490932
+        checksum/airflow-config: ce3287d6e8204ec38980516e991ab7ca58aba0bb9556c07fcce4c7c8f6865e95
         checksum/extra-configmaps: e862ea47e13e634cf17d476323784fa27dac20015550c230953b526182f5cac8
         checksum/extra-secrets: e9582fdd622296c976cbc10a5ba7d6702c28a24fe80795ea5b84ba443a56c827
         checksum/metadata-secret: 1527346545415bf13f4c9ad69470086eb90d854f2b83594d78ec1badb5e13eb0
