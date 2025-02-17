@@ -8,16 +8,20 @@ executor: "KubernetesExecutor"
 dags:
   gitSync:
     enabled: true
-
     repo: https://github.com/ankiyong/seoul_traffic.git
     branch: main
     rev: HEAD
     depth: 1
     maxFailures: 0
     subPath: "dags"
-
     period: 5s
     credentialsSecret: git-credentials
     sshKeySecret: airflow-git-ssh-secret
     containerName: git-sync
     uid: 65533
+
+
+logs:
+  emptyDirConfig:
+    sizeLimit: 10Gi
+    medium: Memory
