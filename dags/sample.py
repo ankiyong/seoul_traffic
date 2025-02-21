@@ -24,7 +24,7 @@ station_id = "ST-10"
 #     print(f"Status Code : {response.status_code}")
 #     return False
 
-def get_data(station_id,api_key):
+def get_data(station_id):
     url = f"http://openapi.seoul.go.kr:8088/584a6e6b54706f703730746f44786b/json/bikeList/1/5/{station_id}" 
     response = requests.get(url)
     data = response.json()
@@ -53,7 +53,7 @@ with DAG(
         task_id='get_data',
         depends_on_past=False,
         python_callable=get_data,
-        op_args=[station_id,api_key]
+        op_args=[api_key]
     )
     ping_task = BashOperator(
         task_id="ping_google",
