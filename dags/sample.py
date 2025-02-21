@@ -11,7 +11,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.models.variable import Variable
 
 station_id = "ST-10"
-api_key = Variable.get("API_KEY")
+# api_key = Variable.get("API_KEY")
 # def api_check(station_id,api_key):
 #     url = f"http://openapi.seoul.go.kr:8088/{api_key}/json/bikeList/1/5/{station_id}" 
 #     response = requests.get(url)
