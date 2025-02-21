@@ -53,7 +53,7 @@ with DAG(
         task_id='get_data',
         depends_on_past=False,
         python_callable=get_data,
-        op_args=[api_key]
+        op_args=[station_id]
     )
     ping_task = BashOperator(
         task_id="ping_google",
